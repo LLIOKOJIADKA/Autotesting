@@ -1,1 +1,1 @@
-# Autotesting
+# Playwright demo project

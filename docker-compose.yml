@@ -1,0 +1,20 @@
+version: '1'
+
+networks:
+  local:
+
+services:
+  
+  playwright:
+    build:
+      context: .
+      dockerfile: ./Dockerfile
+    container_name: playwright
+    volumes:
+      - ./:/var/e2e
+    ports:
+      - "9323:9323"
+    networks:
+      - local
+    tty: true
+    restart: unless-stopped
