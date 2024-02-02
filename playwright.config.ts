@@ -1,4 +1,5 @@
 import { defineConfig, devices } from '@playwright/test';
+import { testConfig } from './testconfig';
 
 /**
  * Read environment variables from file.
@@ -10,6 +11,7 @@ import { defineConfig, devices } from '@playwright/test';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
+  timeout: 30000,
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -34,17 +36,73 @@ export default defineConfig({
   projects: [
     {
       name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
+      use: {
+        // Configure the browser to use.
+        browserName: `chromium`,
+
+        //Chrome Browser Config
+        channel: `chrome`,
+
+        //Picks Base Url based on User input
+        baseURL: testConfig.qa,
+
+        //Browser Mode
+        headless: false,
+
+        //Browser height and width
+        viewport: { width: 1300, height: 730 },
+        ignoreHTTPSErrors: true,
+
+        //Enable File Downloads in Chrome
+        acceptDownloads: true,
+
+        //Artifacts
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`,
+
+        //Slows down execution by ms
+        launchOptions: {
+          slowMo: 0
+        },
+      }
     },
 
     {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
+      name: `Firefox`,
+      use: {
+        browserName: `firefox`,
+        baseURL: testConfig.qa,
+        headless: true,
+        viewport: { width: 1500, height: 730 },
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
+      },
     },
 
     {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
+      name: `Device`,
+      use: {
+        ...devices[`Pixel 4a (5G)`],
+        browserName: `chromium`,
+        channel: `chrome`,
+        baseURL: testConfig.qa,
+        headless: true,
+        ignoreHTTPSErrors: true,
+        acceptDownloads: true,
+        screenshot: `only-on-failure`,
+        video: `retain-on-failure`,
+        trace: `retain-on-failure`,
+        launchOptions: {
+          slowMo: 0
+        }
+      },
     },
 
     /* Test against mobile viewports. */
