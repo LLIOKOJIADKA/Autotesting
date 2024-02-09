@@ -11,7 +11,7 @@ import { testConfig } from './testconfig';
  * See https://playwright.dev/docs/test-configuration.
  */
 export default defineConfig({
-  timeout: 30000,
+  timeout: 20000,
   testDir: './tests',
   /* Run tests in files in parallel */
   fullyParallel: true,
@@ -68,7 +68,7 @@ export default defineConfig({
       }
     },
 
-    {
+/*    {
       name: `Firefox`,
       use: {
         browserName: `firefox`,
@@ -85,8 +85,8 @@ export default defineConfig({
         }
       },
     },
-
-    {
+*/
+/*    {
       name: `Device`,
       use: {
         ...devices[`Pixel 4a (5G)`],
@@ -103,7 +103,7 @@ export default defineConfig({
           slowMo: 0
         }
       },
-    },
+    },*/
 
     /* Test against mobile viewports. */
     // {

@@ -19,16 +19,16 @@ export class LoginPage {
         this.WELCOME_CONSENT_BUTTON = page.getByLabel('Consent', { exact: true });
     }
 
-    async openLoginPage(): Promise<void> {
+    async openLoginPage() {
         await this.page.goto("/login");
     }
 
     async isOpened() {
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('domcontentloaded', {timeout: 1000});
         await expect(this.page).toHaveURL(/.*login/);
     }
 
-    async register(): Promise<void> {
+    async register() {
         await this.WELCOME_CONSENT_BUTTON.click();
         await this.NEW_USER_BUTTON.click();
     }

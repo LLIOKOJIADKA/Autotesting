@@ -23,7 +23,7 @@ export class ProfilePage {
 
     async isOpened() 
     {
-        await this.page.waitForLoadState();
+        await this.page.waitForLoadState('domcontentloaded', {timeout: 1000});
         await expect(this.page).toHaveURL(/.*profile/);
     }
 }
