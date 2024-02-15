@@ -1,6 +1,6 @@
 import test from '../../lib/base/BaseTest';
 
-test('Check elements', async({elementsPage,loginPage}) =>
+test('Check elements', async({elementsPage}) =>
 {
     await test.step('Open Text Box page', async() => {
         await elementsPage.openElementsPage();
@@ -12,8 +12,8 @@ test('Check elements', async({elementsPage,loginPage}) =>
 
     await test.step('Open Check Box page', async() => {
         await elementsPage.openCheckBox();
-        await elementsPage.expand();
+        await elementsPage.expand(200);
         await elementsPage.checkCheckBoxes();
-        await elementsPage.compateSelectedCheckBoxes();
+        await elementsPage.verifySelectedCheckBoxes();
     })
 });

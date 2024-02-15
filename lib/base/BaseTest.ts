@@ -1,4 +1,4 @@
-import { Locator, TestInfo, test as baseTest } from '@playwright/test';
+import { TestInfo, test as baseTest } from '@playwright/test';
 import { LoginPage } from '../helpers/LoginPage';
 import { RegisterPage } from '../helpers/RegisterPage';
 import { ProfilePage } from '../helpers/ProfilePage';

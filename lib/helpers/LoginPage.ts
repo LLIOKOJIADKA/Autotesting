@@ -21,6 +21,14 @@ export class LoginPage {
 
     async openLoginPage() {
         await this.page.goto("/login");
+        try {
+            if(await this.WELCOME_CONSENT_BUTTON.isEnabled({timeout: 1000})){
+                this.WELCOME_CONSENT_BUTTON.click();
+            }
+        } 
+        catch (error) {
+            console.log('LoginPage locator.isEnabled: Timeout exceeded.');
+        }
     }
 
     async isOpened() {
@@ -29,7 +37,6 @@ export class LoginPage {
     }
 
     async register() {
-        await this.WELCOME_CONSENT_BUTTON.click();
         await this.NEW_USER_BUTTON.click();
     }
 
