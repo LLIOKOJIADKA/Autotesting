@@ -2,7 +2,7 @@ import test from '../../lib/base/BaseTest';
 
 test('Check elements', async({elementsPage}) =>
 {
-    await test.step('Open Text Box page', async() => {
+    await test.step('Check Text Box page', async() => {
         await elementsPage.openElementsPage();
         await elementsPage.openTextBox();
         await elementsPage.fillTextBox('Pavel');
@@ -10,7 +10,7 @@ test('Check elements', async({elementsPage}) =>
         await elementsPage.checkSubmitedValues();
     });
 
-    await test.step('Open Check Box page', async() => {
+    await test.step('Check Check Box page', async() => {
         await elementsPage.openCheckBox();
         await elementsPage.expand(200);
         await elementsPage.checkCheckBoxes();

@@ -18,9 +18,12 @@ export class ProfilePage {
         this.LOGOUT_BUTTON = page.getByRole('button', {name: 'Log out'});
         this.GO_TO_BOOK_STORE_BUTTON = page.getByRole('button', {name: 'Got To Book Store'});
         this.DELETE_ACCOUNT_BUTTON = page.getByRole('button', {name: 'Delete Account'});
-        this. DELETE_ALL_BOOKS = page.getByRole('button', {name: 'Delete All Books'});
+        this.DELETE_ALL_BOOKS = page.getByRole('button', {name: 'Delete All Books'});
     }
 
+    /**
+     * Method for checking that Profile page is opened
+     */
     async isOpened() 
     {
         await this.page.waitForLoadState('domcontentloaded', {timeout: 1000});

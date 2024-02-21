@@ -19,6 +19,9 @@ export class LoginPage {
         this.WELCOME_CONSENT_BUTTON = page.getByLabel('Consent', { exact: true });
     }
 
+    /**
+     * Method for opening Login page using URL
+     */
     async openLoginPage() {
         await this.page.goto("/login");
         try {
@@ -31,15 +34,26 @@ export class LoginPage {
         }
     }
 
+    /**
+     * Method for checking that Login page is opened
+     */
     async isOpened() {
         await this.page.waitForLoadState('domcontentloaded', {timeout: 1000});
         await expect(this.page).toHaveURL(/.*login/);
     }
 
+    /**
+     * Method for registering the user
+     */
     async register() {
         await this.NEW_USER_BUTTON.click();
     }
 
+    /**
+     * Method for logging in
+     * @param username 
+     * @param password 
+     */
     async login(username: string, password: string) {
         await this.USERNAME_INPUT.fill(username);
         await this.PASSWORD_INPUT.fill(password);

@@ -6,10 +6,12 @@ test('Login', async ({loginPage, registerPage, profilePage}) =>
    await test.step('Navigate to Login page', async() => 
    {
       await loginPage.openLoginPage();
+      expect(loginPage.isOpened()).toBeTruthy();
    });
 
    await test.step('Create new User', async() => 
    {
+      expect(loginPage.isOpened()).toBeTruthy();
       await loginPage.register();
       expect(registerPage.isOpened()).toBeTruthy();
       await registerPage.createNewUser();
