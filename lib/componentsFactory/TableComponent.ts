@@ -44,7 +44,7 @@ export class TableComponent {
     /**
      * Returns table as it is or only filled rows.
      * @param filledRowsOnly true as default
-     * @returns 
+     * @returns Array with rows
      */
     async getTable(filledRowsOnly: boolean = true ) {
         if(filledRowsOnly)

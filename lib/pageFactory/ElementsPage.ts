@@ -51,7 +51,7 @@ export class ElementsPage extends BasePage {
 
     /**
      * Method for filling 'Name' input in the Text box tab with provided value.
-     * @param name 
+     * @param name string with the name
      */
     async fillTextBox(name: string) {
         await this.TEXT_BOX_FULL_NAME.fill(name);
@@ -99,7 +99,7 @@ export class ElementsPage extends BasePage {
     /**
      * Method will expand one by one 3 elements in the Check box tab.
      * For every element delay will be timer * (index +1)
-     * @param timer 
+     * @param timer in ms
      */
     async expand(timer: number) {
         await this.EXPAND_TOGGLE.click();

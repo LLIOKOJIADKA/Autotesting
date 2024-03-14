@@ -16,6 +16,9 @@ export class WebTablesPage extends BasePage {
         this.WELCOME_CONSENT_BUTTON = page.getByLabel('Consent', { exact: true });
     }
 
+    /**
+     * DEPRECATED, use open() instead
+     */
     async openWebTablesPage() {
         await this.page.goto('/webtables');
         try {
@@ -28,10 +31,17 @@ export class WebTablesPage extends BasePage {
         }
     }
 
+    /**
+     * Way to init the table component
+     */
     async initTable() {
        await this.WEBTABLE_COMPONENT.parseTableValues();
     }
 
+    /**
+     * Method for checking correctness of the table component
+     * @returns true if table is correct
+     */
     async isTableCorrect(): Promise<boolean>{
 
         //not good idea, need to be done in every method which works with table
@@ -50,6 +60,10 @@ export class WebTablesPage extends BasePage {
         return false;
     }
 
+    /**
+     * Mwthod for getting URL for opening this page
+     * @returns URL
+     */
     protected async getUrl(): Promise<string>
     {
         return '/webtables';
