@@ -1,5 +1,5 @@
 import { APIRequestContext, test } from '@playwright/test';
-import { APIBaseTest } from '../../lib/base/APIBaseTest'
+import { APIBaseTest } from '@lib/base/APIBaseTest'
 
 let apiContext: APIRequestContext;
 

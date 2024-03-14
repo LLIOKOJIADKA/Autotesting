@@ -1,11 +1,13 @@
 import { BrowserContext, Locator, Page, expect } from "@playwright/test";
+import { BasePage } from "./BasePage";
 
 
-export class ElementsPage {
+export class ElementsPage extends BasePage {
     readonly page: Page;
     readonly context: BrowserContext;
     readonly TEXT_BOX_MENU: Locator;
     readonly CHECK_BOX_MENU: Locator;
+    readonly WEB_TABLES_MENU: Locator;
     readonly TEXT_BOX_FULL_NAME: Locator;
     readonly SUBMIT_BUTTON: Locator;
     readonly FULL_NAME_LABLE: Locator;
@@ -16,14 +18,16 @@ export class ElementsPage {
     readonly OFFICE: Locator;
     readonly REACT: Locator;
     readonly YOU_HAVE_SELECTED: Locator;
-    name: string;
+    name: string | undefined;
     
 
     constructor(page: Page, context: BrowserContext) {
+        super(page);
         this.page = page;
         this.context = context;
         this.TEXT_BOX_MENU = page.getByText('Text Box');
         this.CHECK_BOX_MENU = page.getByText('Check Box');
+        this.WEB_TABLES_MENU = page.getByText('Web Tables');
         this.TEXT_BOX_FULL_NAME = page.getByPlaceholder('Full Name');
         this.SUBMIT_BUTTON = page.getByRole('button', {name: 'Submit'});
         this.FULL_NAME_LABLE = page.getByText(/^Name:*/);
@@ -120,5 +124,13 @@ export class ElementsPage {
      */
     async verifySelectedCheckBoxes() {
         await expect(this.YOU_HAVE_SELECTED).toHaveText('You have selected :notesreactofficepublicprivateclassifiedgeneral');
+    }
+
+    async openWebTables() {
+        await this.WEB_TABLES_MENU.click()
+    }
+
+    protected async getUrl(): Promise<string> {
+        return '/elements';
     }
 }

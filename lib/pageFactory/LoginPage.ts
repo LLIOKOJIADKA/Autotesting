@@ -1,6 +1,7 @@
 import { BrowserContext, Locator, Page, expect} from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class LoginPage {
+export class LoginPage extends BasePage{
     readonly page: Page;
     readonly context: BrowserContext;
     readonly USERNAME_INPUT: Locator;
@@ -10,6 +11,7 @@ export class LoginPage {
     readonly WELCOME_CONSENT_BUTTON: Locator;
 
     constructor(page: Page, context: BrowserContext) {
+        super(page);
         this.page = page;
         this.context = context;
         this.USERNAME_INPUT = page.getByPlaceholder('UserName');
@@ -58,5 +60,9 @@ export class LoginPage {
         await this.USERNAME_INPUT.fill(username);
         await this.PASSWORD_INPUT.fill(password);
         await this.LOGIN_BUTTON.click();
+    }
+
+    protected async getUrl(): Promise<string> {
+        return '/login'
     }
 }

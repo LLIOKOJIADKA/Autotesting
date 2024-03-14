@@ -1,6 +1,7 @@
 import { BrowserContext, Locator, Page, expect} from "@playwright/test";
+import { BasePage } from "./BasePage";
 
-export class ProfilePage {
+export class ProfilePage extends BasePage {
     readonly page: Page;
     readonly context: BrowserContext;
     readonly SEARCH_INPUT: Locator;
@@ -11,6 +12,7 @@ export class ProfilePage {
     readonly DELETE_ALL_BOOKS: Locator;
 
     constructor(page: Page, context: BrowserContext){
+        super(page);
         this.page = page;
         this.context = context;
         this.SEARCH_INPUT = page.getByPlaceholder('Type to search');
@@ -28,5 +30,9 @@ export class ProfilePage {
     {
         await this.page.waitForLoadState('domcontentloaded', {timeout: 1000});
         await expect(this.page).toHaveURL(/.*profile/);
+    }
+
+    protected async getUrl(): Promise<string> {
+        return '/profile';
     }
 }

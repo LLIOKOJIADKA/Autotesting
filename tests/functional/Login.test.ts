@@ -1,7 +1,7 @@
 import { expect } from '@playwright/test';
-import test from '../../lib/base/BaseTest';
+import test from '@lib/base/BaseTest';
 
-test('Login', async ({loginPage, registerPage, profilePage}) => 
+test('Login as a new user', async ({loginPage, registerPage, profilePage}) => 
 {
    await test.step('Navigate to Login page', async() => 
    {

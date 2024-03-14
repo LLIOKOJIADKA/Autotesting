@@ -1,7 +1,8 @@
 import { BrowserContext, Locator, Page, expect } from "@playwright/test";
 import { solve } from "recaptcha-solver";
+import { BasePage } from "./BasePage";
 
-export class RegisterPage {
+export class RegisterPage extends BasePage {
     readonly page: Page;
     readonly context: BrowserContext;
     readonly FIRST_NAME_INPUT: Locator;
@@ -15,6 +16,7 @@ export class RegisterPage {
     password: string;
 
     constructor(page: Page, context: BrowserContext) {
+        super(page);
         this.page = page;
         this.context = context;
         this.FIRST_NAME_INPUT = page.getByPlaceholder('First Name');
@@ -56,5 +58,9 @@ export class RegisterPage {
      */
     async returnToLoginPage() {
         await this.BACK_TO_LOGIN.click();
+    }
+
+    protected async getUrl(): Promise<string> {
+        return '/register';
     }
 }

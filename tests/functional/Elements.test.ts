@@ -1,4 +1,4 @@
-import test from '../../lib/base/BaseTest';
+import test from 'lib/base/BaseTest';
 
 test('Check elements', async({elementsPage}) =>
 {

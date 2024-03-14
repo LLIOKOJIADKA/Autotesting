@@ -1,17 +1,17 @@
-import { TestInfo, test as baseTest } from '@playwright/test';
-import { LoginPage } from '../helpers/LoginPage';
-import { RegisterPage } from '../helpers/RegisterPage';
-import { ProfilePage } from '../helpers/ProfilePage';
-import { ElementsPage } from '../helpers/ElementsPage';
+import { test as baseTest } from '@playwright/test';
+import { RegisterPage } from '@lib/pageFactory/RegisterPage';
+import { ProfilePage } from '@lib/pageFactory/ProfilePage';
+import { ElementsPage } from '@lib/pageFactory/ElementsPage';
+import { LoginPage } from '@lib/pageFactory/LoginPage';
+import { WebTablesPage } from '@lib/pageFactory/WebTablesPage';
 
 
 const test = baseTest.extend<{
     loginPage: LoginPage;
     registerPage: RegisterPage;
     profilePage: ProfilePage;
-    elementsPage: ElementsPage;
-    testInfo: TestInfo;
-    
+    elementsPage: ElementsPage;   
+    webTablesPage: WebTablesPage; 
 }>({
     loginPage: async ({ page, context }, use) => {
         await use(new LoginPage(page, context));
@@ -27,6 +27,9 @@ const test = baseTest.extend<{
 
     elementsPage: async ({page, context}, use) => {
         await use(new ElementsPage(page, context));
+    },
+    webTablesPage: async ({page, context}, use) => {
+        await use(new WebTablesPage(page, context));
     }
 });
 
