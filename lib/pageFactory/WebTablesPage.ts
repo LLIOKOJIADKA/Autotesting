@@ -32,22 +32,15 @@ export class WebTablesPage extends BasePage {
     }
 
     /**
-     * Way to init the table component
-     */
-    async initTable() {
-       await this.WEBTABLE_COMPONENT.parseTableValues();
-    }
-
-    /**
      * Method for checking correctness of the table component
      * @returns true if table is correct
      */
     async isTableCorrect(): Promise<boolean>{
 
         //not good idea, need to be done in every method which works with table
-        if(!this.WEBTABLE_COMPONENT.IS_TABLE_INITED)
+        if(!this.WEBTABLE_COMPONENT.IS_TABLE_INITIATED)
         {
-            this.WEBTABLE_COMPONENT.parseTableValues();
+            await this.WEBTABLE_COMPONENT.init();
         }
 
         const table = await this.WEBTABLE_COMPONENT.getTable();
