@@ -94,6 +94,11 @@ export class TableComponent {
         {
             throw new Error('Table isn\'t init.'); 
         }
+
+        if(n > this.TABLE.length)
+        {
+            throw new Error('n value more than rows in the table'); 
+        }
         return this.TABLE[n];
     }
 
