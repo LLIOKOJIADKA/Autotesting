@@ -41,7 +41,8 @@ export class RegisterPage extends BasePage {
         await this.PASSWORD_INPUT.fill(this.password);
         await this.page.mouse.wheel(0, 150);
         await this.CAPTCHA_CHECKBOX.click();
-        await solve(this.page);
+        //TODO Need to update very unstable solving
+        await solve(this.page, {delay: 400});
         await this.REGISTER_BUTTON.click();
     }
 
@@ -57,7 +58,12 @@ export class RegisterPage extends BasePage {
      * Method for returning to Loging page by clicking "Back to login" button
      */
     async returnToLoginPage() {
-        await this.BACK_TO_LOGIN.click();
+        //TODO Need to check
+        const request = await Promise.all([
+            this.page.waitForResponse(response => response.url().includes("login") && response.status() === 200),
+            this.BACK_TO_LOGIN.click(),
+        ]);
+        //await this.BACK_TO_LOGIN.click();
     }
 
     protected async getUrl(): Promise<string> {

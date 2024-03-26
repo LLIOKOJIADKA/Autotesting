@@ -21,7 +21,7 @@ export abstract class BasePage {
             }
         } 
         catch (error) {
-            console.log('LoginPage locator.isEnabled: Timeout exceeded.');
+            console.log('BasePage: locator.isEnabled: Timeout exceeded.');
         }
     }
 

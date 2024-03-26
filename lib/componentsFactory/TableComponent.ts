@@ -24,6 +24,7 @@ export class TableComponent {
         let titlesNames: Array<string> = [];
         let tableValues: Array<Map<string, string>> = [];
 
+        //change to for...in https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Statements/for...in
         for (let i = 0; i < titles.length; i++) {
             const title = await titles[i].textContent();
             titlesNames.push(title !== null ? title : '');
